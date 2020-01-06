@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <groupId>com.newfeelings</groupId>
     <artifactId>feeling-platform-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <name>feeling-platform-gateway</name>
     <description>gateway网关跳转</description>
 
@@ -21,6 +21,17 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.feeling</groupId>
+            <artifactId>feeling-base-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>

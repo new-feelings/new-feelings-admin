@@ -1,4 +1,4 @@
-package com.newfeelings.user.common;
+package com.newfeelings.common.result;
 
 import com.github.pagehelper.PageInfo;
 import lombok.Data;

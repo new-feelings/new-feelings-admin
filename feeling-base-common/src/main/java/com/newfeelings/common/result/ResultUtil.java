@@ -1,4 +1,6 @@
-package com.newfeelings.common;
+package com.newfeelings.common.result;
+
+import com.newfeelings.common.constants.StatusCode;
 
 import java.io.Serializable;
 

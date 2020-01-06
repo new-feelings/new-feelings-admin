@@ -1,11 +1,11 @@
-package com.newfeelings.common;
+package com.newfeelings.common.result;
 
 import lombok.Data;
 
 @Data
-public class Result {
+public class Result<T> {
     private boolean flag;
     private Integer code;
     private String message;
-    private Object data;
+    private T data;
 }

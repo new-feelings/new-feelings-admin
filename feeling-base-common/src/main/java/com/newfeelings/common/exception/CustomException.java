@@ -1,5 +1,6 @@
-package com.newfeelings.user.common;
+package com.newfeelings.common.exception;
 
+import com.newfeelings.common.constants.StatusCode;
 import lombok.Data;
 
 @Data

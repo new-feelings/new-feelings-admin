@@ -2,10 +2,12 @@ package com.newfeelings.user.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.newfeelings.user.common.*;
-import com.newfeelings.user.domain.User;
-import com.newfeelings.user.feign.UserClient;
+import com.newfeelings.common.constants.StatusCode;
+import com.newfeelings.common.exception.CustomException;
+import com.newfeelings.common.result.Result;
+import com.newfeelings.common.result.ResultUtil;
+import com.newfeelings.user.entity.User;
+import com.newfeelings.user.dubbo.service.UserClient;
 import com.newfeelings.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

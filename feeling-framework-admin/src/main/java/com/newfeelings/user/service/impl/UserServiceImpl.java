@@ -1,6 +1,6 @@
 package com.newfeelings.user.service.impl;
 
-import com.newfeelings.user.domain.User;
+import com.newfeelings.user.entity.User;
 import com.newfeelings.user.mapper.UserMapper;
 import com.newfeelings.user.service.UserService;
 import lombok.RequiredArgsConstructor;

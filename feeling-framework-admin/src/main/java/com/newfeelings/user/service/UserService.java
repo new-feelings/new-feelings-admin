@@ -1,6 +1,6 @@
 package com.newfeelings.user.service;
 
-import com.newfeelings.user.domain.User;
+import com.newfeelings.user.entity.User;
 
 import java.util.List;
 

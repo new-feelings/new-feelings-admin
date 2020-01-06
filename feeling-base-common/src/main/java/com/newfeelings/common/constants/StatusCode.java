@@ -1,6 +1,4 @@
-package com.newfeelings.user.common;
-
-import lombok.Data;
+package com.newfeelings.common.constants;
 
 public enum StatusCode {
 
