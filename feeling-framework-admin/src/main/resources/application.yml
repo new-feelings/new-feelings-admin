@@ -1,0 +1,31 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: admin
+  datasource:
+      url: jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+      hikari:
+        username: root
+        password: lmc@2017
+        driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: localhost:8848
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.newfeelings.user.domain
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: basic
+  httpclient:
+    # 强制使用httpclient
+    enabled: true
+    # feign 最大连接数
+    max-connections: 200
+    # feign 单个路径最大连接数
+    max-connections-per-route: 50
