@@ -15,12 +15,10 @@ public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
-    @Override
     public User selectById(String id) {
         return userMapper.selectById(id);
     }
 
-    @Override
     public List<User> selectAll() {
         return userMapper.selectAll();
     }

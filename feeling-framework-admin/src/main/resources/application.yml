@@ -14,15 +14,19 @@ spring:
       discovery:
         enabled: true
         server-addr: localhost:8848
+  main:
+    allow-bean-definition-overriding: true
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.newfeelings.user.entity
 
 dubbo:
-  scan:
-    base-packages: com.newfeelings.user.dubbo.service
   protocol:
-    port: 8060
+    port: 20889
     name: dubbo
   registry:
-    address: spring-cloud://localhost
+    address: spring-cloud://127.0.0.1:8848
+  cloud:
+    subscribed-services: registry
+  application:
+    name: admin

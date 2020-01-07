@@ -6,10 +6,11 @@ import com.newfeelings.common.constants.StatusCode;
 import com.newfeelings.common.exception.CustomException;
 import com.newfeelings.common.result.Result;
 import com.newfeelings.common.result.ResultUtil;
+import com.newfeelings.common.service.ProductService;
 import com.newfeelings.user.entity.User;
-import com.newfeelings.user.dubbo.service.UserClient;
 import com.newfeelings.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,17 +25,15 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final UserClient userClient;
+
+    @Reference
+    private  ProductService registryService;
 
     @GetMapping("select/{id}")
     public User selectById(@PathVariable String id) {
         User user = userService.selectById(id);
         user.getId();
         return user;
-    }
-    @GetMapping("select2/{id}")
-    public User selectById2(@PathVariable String id) {
-        return userClient.selectById(id);
     }
 
     @GetMapping("selectAll")
@@ -56,5 +55,10 @@ public class UserController {
         if(users.size()>0)
             throw new CustomException(StatusCode.ERROR);
         return ResultUtil.success(users);
+    }
+
+    @GetMapping("dubbo/test")
+    public String test1() {
+        return registryService.selectById();
     }
 }
