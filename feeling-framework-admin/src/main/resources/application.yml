@@ -18,7 +18,7 @@ spring:
     allow-bean-definition-overriding: true
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.newfeelings.user.entity
+  type-aliases-package: com.user.entity
 
 dubbo:
   protocol:
@@ -27,6 +27,6 @@ dubbo:
   registry:
     address: spring-cloud://127.0.0.1:8848
   cloud:
-    subscribed-services: registry
+    subscribed-services: product
   application:
     name: admin

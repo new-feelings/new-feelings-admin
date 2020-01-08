@@ -4,7 +4,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   application:
-    name: registry
+    name: product
   cloud:
     nacos:
       discovery:
@@ -13,7 +13,7 @@ spring:
 
 dubbo:
   scan:
-    base-packages: org.registry.service.impl
+    base-packages: org.product.service.impl
   protocol:
     port: 20899
     name: dubbo
