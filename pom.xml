@@ -20,7 +20,7 @@
     <description>New Feelings Admin</description>
 
     <modules>
-        <module>feeling-platform-registry</module>
+        <module>feeling-platform-product</module>
         <module>feeling-platform-gateway</module>
         <module>feeling-framework-admin</module>
         <module>feeling-base-common</module>

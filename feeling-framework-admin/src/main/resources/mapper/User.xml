@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.newfeelings.user.mapper.UserMapper">
-    <select id="selectById" resultType="com.newfeelings.user.entity.User">
+<mapper namespace="org.user.mapper.UserMapper">
+    <select id="selectById" resultType="org.user.entity.User">
         select * from `user` where id = #{id}
     </select>
-    <select id="selectAll" resultType="com.newfeelings.user.entity.User">
+    <select id="selectAll" resultType="org.user.entity.User">
         select * from `user`
     </select>
 </mapper>
