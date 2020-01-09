@@ -15,7 +15,7 @@ spring:
       default-filters:
         - StripPrefix=2
       routes:
-        - id: route-spring-cloud-system
-          uri: lb://spring-cloud-system
+        - id: route-new-feeling-admin
+          uri: lb://new-feeling-admin
           predicates:
-            - Path=/api/system/**
+            - Path=/api/admin/**

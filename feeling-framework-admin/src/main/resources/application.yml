@@ -2,7 +2,7 @@ server:
   port: 8888
 spring:
   application:
-    name: spring-cloud-system
+    name: new-feeling-admin
   datasource:
       url: jdbc:mysql://localhost:3306/spring-cloud-system?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
       hikari:
@@ -22,13 +22,22 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-#dubbo:
-#  protocol:
-#    port: 20889
-#    name: dubbo
-#  registry:
-#    address: spring-cloud://127.0.0.1:8848
-#  cloud:
-#    subscribed-services: product
-#  application:
-#    name: admin
+#oauth2 client配置
+security:
+  oauth2:
+    client:
+      client-id: spring-cloud-system
+      client-secret: system
+      grant-type: password
+      access-token-uri: http://localhost:8762/oauth/token
+      scope: all
+    resource:
+      token-info-uri: http://localhost:8762/oauth/check_token
+      user-info-uri: http://localhost:8762/auth/currentUser
+
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: spring-cloud://127.0.0.1:8848

@@ -1,4 +1,4 @@
-package org.feeling.admin;
+package org.admin;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;

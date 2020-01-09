@@ -13,5 +13,5 @@ import org.springframework.context.annotation.Primary;
 */
 @Service
 @Primary
-public class UserService extends ServiceImpl<UserMapper, User> implements IUserService{
+public class UserService extends ServiceImpl<UserMapper, User> implements IUserService {
 }

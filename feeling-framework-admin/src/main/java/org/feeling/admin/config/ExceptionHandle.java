@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 
+/**
+ * 统一异常处理器
+ */
 @Slf4j
 @ControllerAdvice
 public class ExceptionHandle {

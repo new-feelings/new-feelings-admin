@@ -3,6 +3,7 @@ package org.feelings.auth.config;
 import org.feelings.auth.auth.AuthService;
 import org.feelings.auth.auth.CustomAuthenticationEntryPoint;
 import org.feelings.auth.auth.CustomAuthenticationProvider;
+import org.feelings.auth.auth.CustomLogoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,18 +40,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    @Bean
+    public LogoutHandler logoutHandler(){
+        return new CustomLogoutHandler();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .requestMatcher(new OAuth2RequestMatcher())
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
-                .and()
-                .authorizeRequests()
+                .and().logout().logoutUrl("/oauth/logout").addLogoutHandler(logoutHandler())
+                .and().authorizeRequests()
                 .antMatchers("/oauth/**").permitAll()
-                .antMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated()
-                .and()
-                .httpBasic();
+                .and().httpBasic();
     }
 
     /**
