@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.feeling.admin.tools.generator.mapper.GeneratorMapper">
+
+    <!-- 查询所有数据库 -->
+    <select id="selectDatabases" resultType="string">
+        SELECT
+            SCHEMA_NAME
+        FROM information_schema.SCHEMATA
+        WHERE SCHEMA_NAME LIKE concat('spring-cloud', '%')
+    </select>
+
+    <!-- 查询指定数据库中的表 -->
+    <select id="selectTableList" resultType="org.feeling.admin.tools.generator.entity.TableInfo" parameterType="org.feeling.admin.tools.generator.dto.GeneratorQueryDTO">
+        SELECT distinct
+            t.TABLE_NAME as tableName,
+            t.TABLE_COMMENT AS tableComment,
+            t.ENGINE AS tableEngine,
+            t.CREATE_TIME AS createTime
+        FROM information_schema.TABLES t
+        left join information_schema.TABLE_CONSTRAINTS tc on tc.TABLE_SCHEMA = t.TABLE_SCHEMA and tc.TABLE_NAME = t.TABLE_NAME
+        where t.TABLE_SCHEMA = #{database}
+        <if test="tableName != null and tableName != ''">
+            <bind name="nameLike" value="'%' + tableName + '%'"/>
+            and t.TABLE_NAME like #{nameLike}
+        </if>
+    </select>
+
+    <!-- 查询指定表的字段信息 -->
+    <select id="selectColumnList" parameterType="org.feeling.admin.tools.generator.dto.GeneratorQueryDTO" resultType="org.feeling.admin.tools.generator.entity.ColumnInfo">
+        SELECT
+          COLUMN_NAME AS columnName,
+          DATA_TYPE AS columnType,
+          COLUMN_COMMENT AS columnComment,
+          CASE COLUMN_KEY WHEN 'PRI' THEN true ELSE FALSE END AS primaryKey,
+          'equals' AS searchType,
+          TRUE AS enableListView,
+          TRUE AS enableFormView,
+          FALSE AS enableListQuery
+        FROM information_schema.COLUMNS
+        WHERE TABLE_SCHEMA = #{database} and TABLE_NAME = #{tableName}
+    </select>
+
+</mapper>

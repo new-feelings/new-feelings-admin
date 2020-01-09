@@ -12,3 +12,10 @@ spring:
       discovery:
         locator:
           enabled: true
+      default-filters:
+        - StripPrefix=2
+      routes:
+        - id: route-new-feeling-admin
+          uri: lb://new-feeling-admin
+          predicates:
+            - Path=/api/admin/**

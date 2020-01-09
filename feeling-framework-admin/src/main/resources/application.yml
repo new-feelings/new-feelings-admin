@@ -2,12 +2,12 @@ server:
   port: 8888
 spring:
   application:
-    name: admin
+    name: new-feeling-admin
   datasource:
-      url: jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+      url: jdbc:mysql://localhost:3306/spring-cloud-system?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
       hikari:
         username: root
-        password: lmc@2017
+        password: 123456
         driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     nacos:
@@ -16,17 +16,28 @@ spring:
         server-addr: localhost:8848
   main:
     allow-bean-definition-overriding: true
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.user.entity
+
+mybatis-plus:
+  mapper-locations: classpath:mappers/*/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#oauth2 client配置
+security:
+  oauth2:
+    client:
+      client-id: spring-cloud-system
+      client-secret: system
+      grant-type: password
+      access-token-uri: http://localhost:8762/oauth/token
+      scope: all
+    resource:
+      token-info-uri: http://localhost:8762/oauth/check_token
+      user-info-uri: http://localhost:8762/auth/currentUser
 
 dubbo:
   protocol:
-    port: 20889
     name: dubbo
+    port: -1
   registry:
     address: spring-cloud://127.0.0.1:8848
-  cloud:
-    subscribed-services: product
-  application:
-    name: admin
