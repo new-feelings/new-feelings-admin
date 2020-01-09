@@ -12,3 +12,10 @@ spring:
       discovery:
         locator:
           enabled: true
+      default-filters:
+        - StripPrefix=2
+      routes:
+        - id: route-spring-cloud-system
+          uri: lb://spring-cloud-system
+          predicates:
+            - Path=/api/system/**
